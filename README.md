@@ -20,3 +20,4 @@ First log into the box
 then you can run the logstash indexer-shipper.conf
 
     java -jar /home/vagrant/logstash/logstash.jar agent -f '/vagrant/logstash/indexer-shipper.conf'
+
