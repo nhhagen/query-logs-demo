@@ -1,0 +1,41 @@
+{
+   "template": "logstash-*",
+   "settings": {
+   "number_of_shards": 3,
+      "analysis": {
+         "analyzer" : {
+            "queryText": {
+               "type": "custom",
+               "tokenizer": "keyword",
+               "filter": ["lowercase", "trim"]
+            }
+         }
+      }
+   },
+   "mappings": {
+      "front-search-query": {
+         "properties": {
+            "message": {
+               "properties": {
+                  "searchQuery": {
+                     "properties": {
+                        "queryText": {
+                           "type": "multi_field",
+                           "fields": {
+                              "raw": {
+                                 "analyzer": "queryText",
+                                 "type": "string"
+                              },
+                              "queryText": {
+                                 "type": "string"
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
